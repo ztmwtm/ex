@@ -16,14 +16,20 @@ public class JavaQuestionService implements QuestionService {
     @Override
     public Question add(String question, String answer) {
         Question freshQuestion = new Question(question, answer);
-        questions.add(freshQuestion);
+        add(freshQuestion);
         return freshQuestion;
     }
 
     @Override
     public Question add(Question question) {
-        questions.add(question);
+        if (isNotPresentedQuestion(question)) {
+            questions.add(question);
+        }
         return question;
+    }
+
+    private boolean isNotPresentedQuestion(Question question) {
+        return questions.stream().map(Question::getQuestion).noneMatch(s -> s.equals(question.getQuestion()));
     }
 
     @Override

@@ -38,6 +38,23 @@ class JavaQuestionServiceTest {
     }
 
     @Test
+    void addEqualsQuestionsThenEqualsGetAll() {
+        List<Question> expected = new ArrayList<>();
+        expected.add(new Question("question1", "answer1"));
+        expected.add(new Question("question2", "answer2"));
+        expected.add(new Question("question3", "answer3"));
+        assertThat(questionService.add("question3", "answer3"))
+                .isEqualTo(new Question("question3", "answer3"));
+        assertThat(questionService.add("question3", "answer3"))
+                .isEqualTo(new Question("question3", "answer3"));
+        assertThat(questionService.add("question3", "answer3"))
+                .isEqualTo(new Question("question3", "answer3"));
+        assertThat(questionService.add("question3", "answer3"))
+                .isEqualTo(new Question("question3", "answer3"));
+        assertThat(questionService.getAll()).isNotNull().isEqualTo(expected);
+    }
+
+    @Test
     void addQuestionObjectThenEqualsResultThenEqualsGetAll() {
         List<Question> expected = new ArrayList<>();
         expected.add(new Question("question1", "answer1"));
